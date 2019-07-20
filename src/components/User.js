@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      organizations: [],
+      amountList: []
+    };
+  }
+  addListofOrganization(name){
+    let newOrganizations = this.state.organizations;
+    newOrganizations.push({id: newOrganizations.length + 1, name: "test1"});
+    this.setState({organizations: newOrganizations});
+
+    let newAmountList = this.state.amountList;
+    newAmountList.push({id: newAmountList.length + 1, name: "donation" + newAmountList.length + 1});
+    this.setState({amountList: newAmountList});
+  }
+
     render() {
       return (
         <div className="user">
@@ -16,31 +33,24 @@ class Dashboard extends Component {
                 <div class="col s12 m12 l6">
                   <h5 className="userSectionTitle centerIt">Nonprofit Organization</h5>
                   <ol className="marginLeft">
-                    <li className="userPara marginYHigh">
-                      <button className="waves-effect waves-light btn">Drop List</button>
-                    </li>
-                    <li className="userPara marginYHigh"></li>
-                    <li className="userPara marginYHigh"></li>
+                    {this.state.organizations.map(organization => {
+                      return <li className="userPara marginYHigh" key={organization.id}>{organization.name}</li>
+                    })}
                   </ol>
+                  <button className="waves-effect waves-light btn" onClick={() => this.addListofOrganization("test")}>Drop List</button>
                 </div>
                 <div class="col s12 m12 l6">
                   <h5 className="userSectionTitle centerIt">Amount (USD)</h5>
                   <ul>
-                    <li className="userPara">
-                      <div class="input-field col s6 offset-s3">
-                        <input placeholder="USD" id="donation1" type="number" className="center" />
-                      </div>
-                    </li>
-                    <li className="userPara">
-                      <div class="input-field col s6 offset-s3">
-                        <input placeholder="USD" id="donation2" type="number" className="center" />
-                      </div>
-                    </li>
-                    <li className="userPara">
-                      <div class="input-field col s6 offset-s3">
-                        <input placeholder="USD" id="donation3" type="number" className="center" />
-                      </div>
-                    </li>
+                    {this.state.amountList.map(amount => {
+                      return (
+                        <li className="userPara" key={amount.id}>
+                          <div class="input-field col s6 offset-s3">
+                            <input placeholder="USD" id={amount.name} type="number" className="center" />
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>
