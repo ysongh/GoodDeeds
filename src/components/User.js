@@ -14,17 +14,31 @@ class Dashboard extends Component {
               <div class="col s12 m12 l6">
                 <h5 className="userSectionTitle centerIt">Nonprofit Organization</h5>
                 <ol className="marginLeft">
-                  <li className="userPara">Example</li>
-                  <li className="userPara">Example</li>
-                  <li className="userPara">Example</li>
+                  <li className="userPara marginYHigh">
+                    <button className="waves-effect waves-light btn">Drop List</button>
+                  </li>
+                  <li className="userPara marginYHigh"></li>
+                  <li className="userPara marginYHigh"></li>
                 </ol>
               </div>
               <div class="col s12 m12 l6">
-                <h5 className="userSectionTitle centerIt">Amount</h5>
+                <h5 className="userSectionTitle centerIt">Amount (USD)</h5>
                 <ul>
-                  <li className="userPara center">5 USD</li>
-                  <li className="userPara center">10 USD</li>
-                  <li className="userPara center">7 USD</li>
+                  <li className="userPara">
+                    <div class="input-field col s6 offset-s3">
+                      <input placeholder="USD" id="donation1" type="number" className="center" />
+                    </div>
+                  </li>
+                  <li className="userPara">
+                    <div class="input-field col s6 offset-s3">
+                      <input placeholder="USD" id="donation2" type="number" className="center" />
+                    </div>
+                  </li>
+                  <li className="userPara">
+                    <div class="input-field col s6 offset-s3">
+                      <input placeholder="USD" id="donation3" type="number" className="center" />
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>
