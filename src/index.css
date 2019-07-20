@@ -6,6 +6,9 @@
     box-sizing: inherit;
 }
 
+body {
+    background-color: rgb(252, 179, 169);
+}
 .dashboard__logo{
     height: 4.7rem;
 }
@@ -19,7 +22,7 @@
 }
 
 .userSectionTitle{
-    background-color: red;
+    background-color: rgb(247, 149, 110);
     padding: .5rem;
     border: 1px solid black;
 }
