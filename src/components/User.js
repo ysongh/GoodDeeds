@@ -29,8 +29,8 @@ class Dashboard extends Component {
               
             <div>
               <h3 className="userSectionTitle">Donation</h3>
-              <div class="row">
-                <div class="col s12 m12 l6">
+              <div className="row">
+                <div className="col s12 m12 l6">
                   <h5 className="userSectionTitle centerIt">Nonprofit Organization</h5>
                   <ol className="marginLeft">
                     {this.state.organizations.map(organization => {
@@ -39,13 +39,13 @@ class Dashboard extends Component {
                   </ol>
                   <button className="waves-effect waves-light btn" onClick={() => this.addListofOrganization("test")}>Drop List</button>
                 </div>
-                <div class="col s12 m12 l6">
+                <div className="col s12 m12 l6">
                   <h5 className="userSectionTitle centerIt">Amount (USD)</h5>
                   <ul>
                     {this.state.amountList.map(amount => {
                       return (
                         <li className="userPara" key={amount.id}>
-                          <div class="input-field col s6 offset-s3">
+                          <div className="input-field col s6 offset-s3">
                             <input placeholder="USD" id={amount.name} type="number" className="center" />
                           </div>
                         </li>
