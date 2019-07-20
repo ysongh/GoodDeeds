@@ -79,6 +79,8 @@ class Dashboard extends Component {
                               name={amount.id}
                               type="number"
                               className="center"
+                              min="1"
+                              max="100"
                               value={amount.worth}
                               onChange={this.onChange} />
                           </div>

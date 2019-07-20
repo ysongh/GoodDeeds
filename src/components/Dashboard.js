@@ -30,6 +30,8 @@ class Dashboard extends Component {
                     type="number"
                     className="validate center"
                     value={this.state.amount}
+                    min="1"
+                    max="100"
                     onChange={this.onChange} />
                   <label for="email_inline"></label>
                 </div>
