@@ -12,6 +12,7 @@ const Nav = () => {
             </Link>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><Link to="/">Dashboard</Link></li>
+                <li><Link to="/user">User</Link></li>
             </ul>
             </div>
         </nav>

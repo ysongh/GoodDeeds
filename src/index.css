@@ -10,7 +10,38 @@
     height: 4.7rem;
 }
 
+.user{
+    padding: 0 3rem;
+}
+
+.userPara{
+    font-size: 1.6rem;
+}
+
+.userSectionTitle{
+    background-color: red;
+    padding: .5rem;
+    border: 1px solid black;
+}
+
 .centerIt{
     display: flex;
-    margin: 0 auto;
+    justify-content: center;
+}
+
+.zeroMargin{
+    margin: 0;
+}
+
+.marginYLow{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.marginRight{
+    margin-right: 2rem;
+}
+
+.marginLeft{
+    margin-left: 2rem;
 }
