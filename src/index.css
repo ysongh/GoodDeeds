@@ -33,6 +33,12 @@ body {
     align-items: flex-end;
 }
 
+.center__submitArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .centerIt{
     display: flex;
     justify-content: center;
