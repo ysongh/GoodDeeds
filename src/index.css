@@ -24,6 +24,12 @@
     border: 1px solid black;
 }
 
+.user__submitArea{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .centerIt{
     display: flex;
     justify-content: center;
