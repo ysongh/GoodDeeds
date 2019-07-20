@@ -7,15 +7,43 @@ class Dashboard extends Component {
       organizations: [],
       amountList: []
     };
+    this.onChange = this.onChange.bind(this);
   }
+
+  onChange(e){
+    const name = e.target.name;
+    const value = e.target.value;
+    let newAmountList = this.state.amountList;
+
+    newAmountList.forEach(amount => {
+      if(amount.id === parseInt(name)){
+        amount.worth = parseInt(value)
+      }
+    });
+
+    this.setState({amountList: newAmountList});
+  }
+
   addListofOrganization(name){
     let newOrganizations = this.state.organizations;
     newOrganizations.push({id: newOrganizations.length + 1, name: "test1"});
     this.setState({organizations: newOrganizations});
 
     let newAmountList = this.state.amountList;
-    newAmountList.push({id: newAmountList.length + 1, name: "donation" + newAmountList.length + 1});
+    newAmountList.push({id: newAmountList.length + 1, worth: ""});
     this.setState({amountList: newAmountList});
+  }
+
+  getTotalAmount(){
+    let total = 0;
+    this.state.amountList.forEach(function(amount){
+      total += amount.worth;
+    })
+    return total;
+  }
+
+  sendDonation(){
+    console.log("You send this amount " + this.getTotalAmount());
   }
 
     render() {
@@ -46,7 +74,13 @@ class Dashboard extends Component {
                       return (
                         <li className="userPara" key={amount.id}>
                           <div className="input-field col s6 offset-s3">
-                            <input placeholder="USD" id={amount.name} type="number" className="center" />
+                            <input
+                              placeholder="USD"
+                              name={amount.id}
+                              type="number"
+                              className="center"
+                              value={amount.worth}
+                              onChange={this.onChange} />
                           </div>
                         </li>
                       );
@@ -55,8 +89,8 @@ class Dashboard extends Component {
                 </div>
               </div>
               <div className="user__submitArea marginRight">
-                <p className="userPara">Total: 22USD</p>
-                <button className="waves-effect waves-light btn">Submit Donation</button>
+                <p className="userPara">Total: {this.getTotalAmount()}USD</p>
+                <button className="waves-effect waves-light btn" onClick={() => this.sendDonation()}>Submit Donation</button>
               </div>
             </div>
             
