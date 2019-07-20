@@ -11,13 +11,13 @@ class BarGraph extends React.Component {
             id: "basic-bar"
           },
           xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+            categories: ["Direct Donation", "1st Indirection Donation", "2nd Indirection Donation"]
           }
         },
         series: [
           {
-            name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91]
+            name: "USD",
+            data: [30, 40, 45]
           }
         ]
       };
@@ -25,15 +25,17 @@ class BarGraph extends React.Component {
 
   render() {
     return (
-        <div className="app">
+        <div className="centerIt">
           <div className="row">
             <div className="mixed-chart">
+              <h4 className="center">{this.props.title}</h4>
               <Chart
                   options={this.state.options}
                   series={this.state.series}
                   type="bar"
                   width="800"
                   height="200"
+                  style={{ margin: "0 auto"}}
               />
             </div>
           </div>

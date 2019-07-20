@@ -6,8 +6,9 @@ class Dashboard extends Component {
     render() {
       return (
         <div>
-            <h1>Dashboard</h1>
-            <BarGraph />
+            <h1 className="center">Dashboard</h1>
+            <BarGraph title="Donation By Nonprofit Organization"/>
+            <BarGraph title="Direct VS. Indirection Donation"/>
         </div>
       );
     }
