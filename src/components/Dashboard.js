@@ -22,8 +22,8 @@ class Dashboard extends Component {
           <br></br>
             <h3 className="center zeroMargin">ConsenSys</h3>
           
-            <div class="row">
-              <div class="col s12 center__submitArea">
+            <div className="row">
+              <div className="col s12 center__submitArea">
                 <br></br>
                 <p className="userPara">Token Balance: 100</p>
                 <p className="userPara">Donated Token Amount: 50</p>

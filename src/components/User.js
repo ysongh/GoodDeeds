@@ -5,9 +5,28 @@ class Dashboard extends Component {
     super();
     this.state = {
       organizations: [],
-      amountList: []
+      amountList: [],
+      balance: 0,
+      address: ""
     };
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidMount(){
+    let url = `http://localhost:8081/api/v1/balance/0xd851C19d71Ea51F8E65333f0d61EDEb41d37313f`;
+    fetch(url)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        this.setState({
+          balance: data.balance,
+          address: data.addr
+        })
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
   }
 
   onChange(e){
@@ -52,8 +71,9 @@ class Dashboard extends Component {
           <br></br>
             <h3 className="center zeroMargin">Customers Page</h3>
             <div className="marginYLow">
-              <p className="userPara">Available Donation Fund: 50USD</p>
-              <p className="userPara">Donated Amount: 20USD</p>
+              <p className="userPara">Available Donation Fund: {this.state.balance}USD</p>
+              <p className="userPara">Address: {this.state.address}</p>
+              <p className="userPara">Donated Amount: 0USD</p>
             </div>
               
             <div>
