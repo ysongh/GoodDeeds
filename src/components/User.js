@@ -66,7 +66,18 @@ class Dashboard extends Component {
 
   addListofOrganization(address, balance){
     let newOrganizations = this.state.organizations;
-    newOrganizations.push({id: newOrganizations.length + 1, address: address, balance: balance});
+    let name = "Guest";
+    if(address === "0xB9E810a2e4A9DC7AcD7E7A7417a7CAC3243727aB"){
+      name = "FindSport2Play";
+    }
+    else if(address === "0xB6F79Ca56d7D303cE4bE7A02F8663573AA649Ac8"){
+      name = "DVRSTY";
+    }
+    else{
+      name="Good Deeds"
+    }
+
+    newOrganizations.push({id: newOrganizations.length + 1, address: address, balance: balance, name: name});
     this.setState({organizations: newOrganizations});
 
     let newAmountList = this.state.amountList;
@@ -105,6 +116,7 @@ class Dashboard extends Component {
                   <ol className="marginLeft">
                     {this.state.organizations.map(organization => {
                       return <li className="marginYHigh" key={organization.id}>
+                          <p>{organization.name}</p>
                           <p>{organization.address}</p>
                           <p>Balance: {organization.balance}</p>
                         </li>
