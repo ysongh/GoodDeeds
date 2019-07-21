@@ -6,14 +6,51 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      amount: 0
+      balance: 0,
+      address: "",
+      customerAddress: "",
+      customerBalance: ""
     };
     this.onChange = this.onChange.bind(this);
   }
+  componentDidMount(){
+    let url = `http://localhost:8081/api/v1/balance/0xd851C19d71Ea51F8E65333f0d61EDEb41d37313f`;
+    fetch(url)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        this.setState({
+          balance: data.balance,
+          address: data.addr
+        })
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
+  }
+
   onChange(e){
+    const name= e.target.name;
     const value = e.target.value;
 
-    this.setState({amount: value});
+    this.setState({[name]: value});
+  }
+
+  checkCustomerBalance(){
+    let url = `http://localhost:8081/api/v1/balance/${this.state.customerAddress}`;
+    fetch(url)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        this.setState({
+          customerBalance: data.balance,
+        })
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
   }
 
     render() {
@@ -25,8 +62,9 @@ class Dashboard extends Component {
             <div className="row">
               <div className="col s12 center__submitArea">
                 <br></br>
-                <p className="userPara">Token Balance: 100</p>
-                <p className="userPara">Donated Token Amount: 50</p>
+                <p className="userPara">Address: {this.state.address}</p>
+                <p className="userPara">Token Balance: {this.state.balance}</p>
+                <p className="userPara">Donated Token Amount: 0</p>
                 <br></br> 
               </div>
              <br></br>
@@ -44,11 +82,29 @@ class Dashboard extends Component {
               
               <div>
               <h3 className="userSectionTitle">Forward Tokens to your Customers</h3>
-              <ol className="marginLeft">
-                <li className="userPara marginYHigh">Address</li>
-                <li className="userPara marginYHigh">Address</li>
-                <li className="userPara marginYHigh">Address</li>
-              </ol>
+
+              <div className="row">
+                <div className="col s6">
+                  <input
+                  id="email_inline"
+                  name="customerAddress"
+                  type="text"
+                  className="validate"
+                  placeholder="Customer Address"
+                  value={this.state.customerAddress}
+                  onChange={this.onChange} />
+                </div>
+                <div className="col s6">
+                  <p className="userPara center">{this.state.customerBalance ? "Token Balance:" + this.state.customerBalance : null}</p>
+                </div>
+              </div>
+              
+              <button
+                className="waves-effect waves-light btn"
+                onClick={() => this.checkCustomerBalance()}>
+                  Find Balance
+              </button>
+
             </div>
 
 
