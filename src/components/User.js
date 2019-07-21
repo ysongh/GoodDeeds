@@ -95,7 +95,7 @@ class Dashboard extends Component {
             </div>
             
             <div>
-              <h3 className="userSectionTitle">Forward your fund to Friends</h3>
+              <h3 className="userSectionTitle">Forward Tokens to your Friends</h3>
               <ol className="marginLeft">
                 <li className="userPara marginYHigh">Address</li>
                 <li className="userPara marginYHigh">Address</li>

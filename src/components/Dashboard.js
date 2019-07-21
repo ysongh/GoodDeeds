@@ -23,16 +23,8 @@ class Dashboard extends Component {
             <div class="row">
               <div class="col s12 center__submitArea">
                 <p className="userPara">Token Balance: 100</p>
-                <p className="userPara">Donated Token Amount:</p>
-                <div class="input-field inline">
-                  <input
-                    id="email_inline"
-                    type="number"
-                    className="validate center"
-                    value={this.state.amount}
-                    onChange={this.onChange} />
-                  <label for="email_inline"></label>
-                </div>
+                <p className="userPara">Donated Token Amount: 50</p>
+                
               </div>
               <div className="center">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -45,6 +37,16 @@ class Dashboard extends Component {
                 </form>
               </div>
               
+              <div>
+              <h3 className="userSectionTitle">Forward Tokens to your Customers</h3>
+              <ol className="marginLeft">
+                <li className="userPara marginYHigh">Address</li>
+                <li className="userPara marginYHigh">Address</li>
+                <li className="userPara marginYHigh">Address</li>
+              </ol>
+            </div>
+
+
             </div>
             <BarGraph title="Donation By Nonprofit Organization"/>
             <BarGraph title="Direct VS. Indirection Donation"/>
