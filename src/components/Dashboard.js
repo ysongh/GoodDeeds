@@ -7,9 +7,10 @@ class Dashboard extends Component {
     super();
     this.state = {
       balance: 0,
-      address: "",
+      address: "You must login to metamask",
       customerAddress: "",
       customerBalance: "",
+      tokenAmount: "",
       donateAmount: ""
     };
     this.onChange = this.onChange.bind(this);
@@ -54,9 +55,23 @@ class Dashboard extends Component {
     });
   }
 
+  donateToGetToken(){
+    let url = `http://localhost:8081/api/v1/mint/${this.state.address}/${this.state.tokenAmount}`;
+    fetch(url, {
+      method: 'PUT',
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
+  }
+
   donateToCustomer(){
-    console.log(this.state.customerAddress, this.state.donateAmount)
-    
     let url = `http://localhost:8081/api/v1/transfer/${this.state.donateAmount}/${this.state.address}/${this.state.customerAddress}`;
     fetch(url, {
       method: 'PUT',
@@ -84,6 +99,24 @@ class Dashboard extends Component {
                 <br></br>
                 <p className="userPara">Address: {this.state.address}</p>
                 <p className="userPara">Token Balance: {this.state.balance}</p>
+                <div className="row">
+                  <div className="col s6">
+                    <input
+                      id="email_inline"
+                      name="tokenAmount"
+                      type="number"
+                      className="validate center"
+                      placeholder="Get token"
+                      value={this.state.tokenAmount}
+                      onChange={this.onChange} />
+                    <button
+                      className="waves-effect waves-light btn"
+                      onClick={() => this.donateToGetToken()}>
+                        Get Token
+                    </button>
+                  </div>
+                </div>
+                
                 <p className="userPara">Donated Token Amount: 0</p>
                 <br></br> 
               </div>
