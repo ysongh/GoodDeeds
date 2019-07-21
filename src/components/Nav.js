@@ -11,8 +11,8 @@ const Nav = () => {
                 <img src={Logo} className="dashboard__logo" alt="Logo"/>
             </Link>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li><Link to="/">Dashboard</Link></li>
-                <li><Link to="/user">User</Link></li>
+                <li><Link to="/">ConsenSys</Link></li>
+                <li><Link to="/user">Customers</Link></li>
             </ul>
             </div>
         </nav>

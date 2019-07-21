@@ -19,14 +19,19 @@ class Dashboard extends Component {
     render() {
       return (
         <div>
-            <h1 className="center zeroMargin">Dashboard</h1>
+          <br></br>
+            <h3 className="center zeroMargin">ConsenSys</h3>
+          
             <div class="row">
               <div class="col s12 center__submitArea">
+                <br></br>
                 <p className="userPara">Token Balance: 100</p>
                 <p className="userPara">Donated Token Amount: 50</p>
-                
+                <br></br> 
               </div>
+             <br></br>
               <div className="center">
+              <br></br>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                   <input type="hidden" name="cmd" value="_s-xclick" />
                   <input type="hidden" name="hosted_button_id" value="KGHTHNQQNG7EW" />

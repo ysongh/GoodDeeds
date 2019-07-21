@@ -49,7 +49,8 @@ class Dashboard extends Component {
     render() {
       return (
         <div className="user">
-            <h1 className="center zeroMargin">Customers/Friends</h1>
+          <br></br>
+            <h3 className="center zeroMargin">Customers Page</h3>
             <div className="marginYLow">
               <p className="userPara">Available Donation Fund: 50USD</p>
               <p className="userPara">Donated Amount: 20USD</p>
@@ -79,6 +80,8 @@ class Dashboard extends Component {
                               name={amount.id}
                               type="number"
                               className="center"
+                              min="1"
+                              max="100"
                               value={amount.worth}
                               onChange={this.onChange} />
                           </div>
