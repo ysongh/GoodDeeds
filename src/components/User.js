@@ -8,7 +8,9 @@ class Dashboard extends Component {
       amountList: [],
       balance: 0,
       address: "",
-      selectOrganization: ""
+      selectOrganization: "",
+      friendAddress: "",
+      friendBalance: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSelect = this.onSelect.bind(this);
@@ -153,11 +155,40 @@ class Dashboard extends Component {
             
             <div>
               <h3 className="userSectionTitle">Forward Tokens to your Friends</h3>
-              <ol className="marginLeft">
-                <li className="userPara marginYHigh">Address</li>
-                <li className="userPara marginYHigh">Address</li>
-                <li className="userPara marginYHigh">Address</li>
-              </ol>
+
+              <div className="row">
+                <div className="col s6">
+                  <input
+                    id="email_inline"
+                    name="friendAddress"
+                    type="text"
+                    className="validate"
+                    placeholder="Friend Address"
+                    value={this.state.friendAddress}
+                    onChange={this.onChange} />
+                </div>
+                <div className="col s6">
+                  <input
+                    id="email_inline"
+                    name="donateAmount"
+                    type="number"
+                    className="validate"
+                    placeholder="Donate Amount"
+                    value={this.state.donateAmount}
+                    onChange={this.onChange} />
+                </div>
+              </div>
+
+              <button
+                className="waves-effect waves-light btn"
+                onClick={() => this.checkCustomerBalance()}>
+                  Find Your Friend Balance
+              </button>
+              <button
+                className="waves-effect waves-light btn"
+                onClick={() => this.donateToCustomer()}>
+                  Donate
+              </button>
             </div>
         </div>
       );

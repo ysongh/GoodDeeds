@@ -64,11 +64,14 @@ class Dashboard extends Component {
         return res.json();
     })
     .then(data => {
-        console.log(data);
+        console.log("Get token", data);
     })
     .catch((err) => {
         console.log('There was a problem with your fetch request' + err.message);
     });
+    this.setState({
+      tokenAmount: ""
+    })
   }
 
   donateToCustomer(){
@@ -80,12 +83,16 @@ class Dashboard extends Component {
         return res.json();
     })
     .then(data => {
-        console.log(data);
+        console.log("donateto cumsteom", data);
         console.log("good");
     })
     .catch((err) => {
         console.log('There was a problem with your fetch request' + err.message);
     });
+
+    this.setState({
+      donateAmount: ""
+    })
   }
 
     render() {
