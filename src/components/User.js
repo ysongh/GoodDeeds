@@ -7,9 +7,11 @@ class Dashboard extends Component {
       organizations: [],
       amountList: [],
       balance: 0,
-      address: ""
+      address: "",
+      selectOrganization: ""
     };
     this.onChange = this.onChange.bind(this);
+    this.onSelect = this.onSelect.bind(this);
   }
 
   componentDidMount(){
@@ -43,9 +45,26 @@ class Dashboard extends Component {
     this.setState({amountList: newAmountList});
   }
 
-  addListofOrganization(name){
+  onSelect(e){
+    const value = e.target.value;
+    console.log(value);
+
+    let url = `http://localhost:8081/api/v1/balance/${value}`;
+    fetch(url)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        this.addListofOrganization(data.addr, data.balance)
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
+  }
+
+  addListofOrganization(address, balance){
     let newOrganizations = this.state.organizations;
-    newOrganizations.push({id: newOrganizations.length + 1, name: "test1"});
+    newOrganizations.push({id: newOrganizations.length + 1, address: address, balance: balance});
     this.setState({organizations: newOrganizations});
 
     let newAmountList = this.state.amountList;
@@ -83,10 +102,25 @@ class Dashboard extends Component {
                   <h5 className="userSectionTitle centerIt">Nonprofit Organization</h5>
                   <ol className="marginLeft">
                     {this.state.organizations.map(organization => {
-                      return <li className="userPara marginYHigh" key={organization.id}>{organization.name}</li>
+                      return <li className="marginYHigh" key={organization.id}>
+                          <p>{organization.address}</p>
+                          <p>Balance: {organization.balance}</p>
+                        </li>
                     })}
                   </ol>
-                  <button className="waves-effect waves-light btn" onClick={() => this.addListofOrganization("test")}>Drop List</button>
+
+                  <select
+                      name="selectOrganization"
+                      value={this.state.selectOrganization}
+                      onChange={this.onSelect}
+                      className="btn waves-light"
+                  >
+                      <option value="">Select Company</option>
+                      <option value="0xB9E810a2e4A9DC7AcD7E7A7417a7CAC3243727aB">FindSport2Play</option>
+                      <option value="0xB6F79Ca56d7D303cE4bE7A02F8663573AA649Ac8">DVRSTY</option>
+                      <option value="0xEA4DF38D031461ec4Bb79478CfDcd8e65FA5A738">Good Deeds</option>
+                  </select>
+
                 </div>
                 <div className="col s12 m12 l6">
                   <h5 className="userSectionTitle centerIt">Amount (USD)</h5>
