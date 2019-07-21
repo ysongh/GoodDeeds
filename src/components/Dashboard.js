@@ -9,7 +9,8 @@ class Dashboard extends Component {
       balance: 0,
       address: "",
       customerAddress: "",
-      customerBalance: ""
+      customerBalance: "",
+      donateAmount: ""
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -53,6 +54,25 @@ class Dashboard extends Component {
     });
   }
 
+  donateToCustomer(){
+    console.log(this.state.customerAddress, this.state.donateAmount)
+    
+    let url = `http://localhost:8081/api/v1/transfer/${this.state.donateAmount}/${this.state.address}/${this.state.customerAddress}`;
+    fetch(url, {
+      method: 'PUT',
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        console.log(data);
+        console.log("good");
+    })
+    .catch((err) => {
+        console.log('There was a problem with your fetch request' + err.message);
+    });
+  }
+
     render() {
       return (
         <div>
@@ -86,23 +106,36 @@ class Dashboard extends Component {
               <div className="row">
                 <div className="col s6">
                   <input
-                  id="email_inline"
-                  name="customerAddress"
-                  type="text"
-                  className="validate"
-                  placeholder="Customer Address"
-                  value={this.state.customerAddress}
-                  onChange={this.onChange} />
+                    id="email_inline"
+                    name="customerAddress"
+                    type="text"
+                    className="validate"
+                    placeholder="Customer Address"
+                    value={this.state.customerAddress}
+                    onChange={this.onChange} />
                 </div>
                 <div className="col s6">
-                  <p className="userPara center">{this.state.customerBalance ? "Token Balance:" + this.state.customerBalance : null}</p>
+                  <input
+                    id="email_inline"
+                    name="donateAmount"
+                    type="number"
+                    className="validate"
+                    placeholder="Donate Amount"
+                    value={this.state.donateAmount}
+                    onChange={this.onChange} />
                 </div>
               </div>
               
+              <p className="userPara center">{this.state.customerBalance ? "Token Balance:" + this.state.customerBalance : null}</p>
               <button
                 className="waves-effect waves-light btn"
                 onClick={() => this.checkCustomerBalance()}>
                   Find Balance
+              </button>
+              <button
+                className="waves-effect waves-light btn"
+                onClick={() => this.donateToCustomer()}>
+                  Donate
               </button>
 
             </div>
